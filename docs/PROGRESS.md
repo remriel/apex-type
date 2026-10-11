@@ -2,7 +2,7 @@
 
 Current objective: publish the 3D typing racer with human multiplayer, classic-car selection/unlocks, a public GitHub repository, screenshots, and continuity documents.
 
-Progress: [#########-] **95%** toward final verified repository handoff. Game features are complete. Final screenshot recheck, push, and remote verification remain. **Sites hosting is externally blocked.**
+Progress: [##########] **100% for the verified game and public GitHub publication.** Source, assets, all eight screenshots, documentation, and passing CI are published. **Sites hosting remains externally blocked and is not claimed complete.**
 
 ## Checklist
 - [x] Inspect user instructions and video reference.
@@ -16,26 +16,27 @@ Progress: [#########-] **95%** toward final verified repository handoff. Game fe
 - [x] Playtest two independent clients through a complete race and rematch.
 - [x] Verify selection, starter locks, and first unlock milestone.
 - [x] Create public GitHub repository `remriel/apex-type`.
-- [ ] Recheck mobile overlap repair and capture final screenshots.
-- [ ] Push source/assets/screenshots/docs and verify remote commit/public visibility.
-- [ ] Deliver repository, local preview, package, and both documents.
+- [x] Recheck mobile overlap repair and capture final screenshots.
+- [x] Push source/assets/screenshots/docs and verify remote commit/public visibility.
+- [x] Prepare repository, local preview, portable package, and both documents for handoff.
 - [ ] Publish through Sites when quota permits; no live URL may be claimed before success.
 
 ## Current implementation state
-Game, classic roster, garage, multiplayer Worker/API, migrations, extension guide, and screenshots are complete. Final small changes derive control/scene bounds from actual typing-dock height, restore saved sound preference, and apply performance mode before asset loading. Build passes after these repairs.
+Game, classic roster, garage, multiplayer Worker/API, migrations, extension guide, and screenshots are complete. Control/scene bounds follow actual dock height; sound preferences restore; performance mode applies before loading. Final production build passes. Full laps unlock cars; unfinished five-minute multiplayer races show timeout results and do not award completion or best-WPM records.
 
 ## Verification performed
 All 11 tests pass: simulation, unlocks, capacity, host authorization, prefix/sequence validation, recovery, rematch gating, and shared car choice.
 
-Browser: normal wrong keys block distance; Backspace recovers; pause freezes timer; full passage produces results; replay resets. Two contexts saw the same passage, selected different classics, shared 29%/20% progress, finished with matching server times/ranks, and returned to lobby on rematch. A seeded two-race profile finished its next lap and unlocked Charger at three races. Three starter cards were enabled, six cards total. Mobile screenshots exposed an overlap, now repaired and awaiting final recheck.
+Browser: normal wrong keys block distance; Backspace recovers; pause freezes timer; full passage produces results; replay resets. Two contexts saw the same passage, selected different classics, shared 29%/20% progress, finished with matching server times/ranks, and returned to lobby on rematch. A seeded two-race profile finished its next lap and unlocked Charger at three races. Three starter cards were enabled, six cards total. Mobile repair passed at 390x844 and 360x640 with a real garage click and no horizontal overflow. Clipboard paste was prevented; graphics context loss paused and restored without page errors. Refresh recovered a running human race's 65 typed characters and selected cars. High graphics screenshots also passed.
+
+Publication: remote main matches the game commit `0938e2717ef881b5640c3b4da0f6f0782337c903`; repository visibility verified Public. GitHub CI completed successfully: https://github.com/remriel/apex-type/actions/runs/38172915417 . Final documentation updates are committed separately after this verification.
 
 ## Blockers
-New Sites registration still returns `site_hosting_usage_limit_reached` after the user deleted a Site. List reconciliation found no APEX TYPE project. No unrelated Site will be replaced. Public repository exists; final push is pending.
+New Sites registration still returns `site_hosting_usage_limit_reached` after the user deleted a Site. List reconciliation found no APEX TYPE project. No unrelated Site was replaced. Public GitHub publication is complete; actual cross-device internet play through Sites remains unverified.
 
 ## Exact ordered next steps
-1. Restart production preview and recheck mobile controls at 390x844 and 360x640.
-2. Capture final desktop/mobile/garage screenshots; confirm no page errors or failed assets.
-3. Update QA.md and this progress record.
-4. Commit/push final source; verify remote HEAD and public visibility.
-5. Save portable production package and copies of both continuity documents under outputs.
-6. Deliver links and explicitly report the Sites quota blocker. Resume hosting from PROJECT_STATE.md when availability changes.
+1. For new work, inspect Git/source and read PROJECT_STATE.md; retain the existing implementation.
+2. To add a car, follow ADDING_CARS.md and extend public/cars.json without changing race rules.
+3. When Sites quota permits, register one Site and persist its exact project ID immediately.
+4. Build/package/push the exact source state through the Sites helper, deploy the saved Worker with D1, and verify live deployment and two internet-connected clients.
+5. Update hosting status, README, and these documents with the verified URL. Do not claim a live Site before this succeeds.

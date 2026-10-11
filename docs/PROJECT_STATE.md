@@ -39,9 +39,10 @@ Starters: Bursley '72, 180MX '94, Eighties GT. Unlocks: Charger, Model T, F40 Dr
 - Fixed camera-control offsets overlapped the dock on mobile. ResizeObserver now derives controls/world bounds from actual dock height and footer spacing.
 - Bundled Playwright ESM failed; `createRequire` loaded its CommonJS package successfully. Use focused calls/60-second tool timeouts on the software renderer. Functional automation uses performance mode.
 - A Sites transport-failed creation was reconciled with list_sites. No APEX TYPE project existed; do not create duplicates after uncertain failures.
+- Initial Git push failed with an empty server reply. Retrying with `git -c http.version=HTTP/1.1 -c http.postBuffer=52428800 push` succeeded; use these scoped flags if the proxy exhibits that failure again.
 
 ## Repository and hosting
-Public repository: https://github.com/remriel/apex-type . GitHub owner remriel, account ID 2818715. Never persist credentials.
+Public repository: https://github.com/remriel/apex-type . GitHub owner remriel, account ID 2818715. Source/assets/eight screenshots are pushed. The game commit is 0938e2717ef881b5640c3b4da0f6f0782337c903; GitHub CI passed at https://github.com/remriel/apex-type/actions/runs/38172915417 . Documentation updates follow separately. Never persist credentials.
 
 Sites is externally blocked by `RATE_LIMITED` / `site_hosting_usage_limit_reached`, even after the user freed a slot. The reconciled list showed eight existing unrelated Sites and no APEX TYPE project. No existing Site was overwritten. Hosting manifest has `d1: "DB"`, `r2: null`, and no invented project ID. No live Sites URL is verified.
 
