@@ -1,0 +1,56 @@
+[
+  {
+    "triangles": 4172,
+    "bytes": 362468,
+    "title": "1994 Nissan 180MX",
+    "source": "https://poly.pizza/m/c7vlPQ8dlt",
+    "author": "Grzybek",
+    "id": "180mx-94",
+    "license": "CC-BY 3.0"
+  },
+  {
+    "triangles": 10111,
+    "license": "CC-BY 3.0",
+    "author": "Grzybek",
+    "title": "1972 Bursley Defiance",
+    "source": "https://poly.pizza/m/jxV8VZ9fYo",
+    "bytes": 1022648,
+    "id": "bursley-72"
+  },
+  {
+    "triangles": 5966,
+    "license": "CC-BY 3.0",
+    "bytes": 509708,
+    "id": "charger",
+    "source": "https://poly.pizza/m/4b80hRVxqvv",
+    "title": "Dodge Charger",
+    "author": "David Sirera"
+  },
+  {
+    "bytes": 318952,
+    "id": "eighties-gt",
+    "triangles": 3735,
+    "title": "80s Car",
+    "source": "https://poly.pizza/m/7tPSW5UYD20",
+    "author": "Nick Ladd",
+    "license": "CC-BY 3.0"
+  },
+  {
+    "id": "f40",
+    "title": "DREAM FERRARI F40",
+    "license": "CC-BY 3.0",
+    "bytes": 283996,
+    "author": "Alexander Schick",
+    "source": "https://poly.pizza/m/6-j7kD0viYB",
+    "triangles": 3160
+  },
+  {
+    "id": "model-t",
+    "source": "https://poly.pizza/m/aJVM4rmsGIb",
+    "license": "CC-BY 3.0",
+    "title": "Ford Model T",
+    "triangles": 2748,
+    "bytes": 89256,
+    "author": "Bruno Oliveira"
+  }
+]

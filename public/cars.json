@@ -1,0 +1,8 @@
+[
+  {"id":"bursley-72","name":"Bursley '72","subtitle":"THE MUSCLE CLASSIC","model":"assets/cars/bursley-72.glb","preview":"assets/cars/bursley-72.webp","unlockRaces":0,"rotationY":0,"author":"Grzybek","source":"https://poly.pizza/m/jxV8VZ9fYo","license":"CC BY 3.0"},
+  {"id":"180mx-94","name":"180MX '94","subtitle":"THE JAPANESE COUPE","model":"assets/cars/180mx-94.glb","preview":"assets/cars/180mx-94.webp","unlockRaces":0,"rotationY":0,"author":"Grzybek","source":"https://poly.pizza/m/c7vlPQ8dlt","license":"CC BY 3.0"},
+  {"id":"eighties-gt","name":"Eighties GT","subtitle":"THE RETRO DAILY","model":"assets/cars/eighties-gt.glb","preview":"assets/cars/eighties-gt.webp","unlockRaces":0,"rotationY":0,"author":"Nick Ladd","source":"https://poly.pizza/m/7tPSW5UYD20","license":"CC BY 3.0"},
+  {"id":"charger","name":"Charger","subtitle":"THE AMERICAN ICON","model":"assets/cars/charger.glb","preview":"assets/cars/charger.webp","unlockRaces":3,"rotationY":0,"author":"David Sirera","source":"https://poly.pizza/m/4b80hRVxqvv","license":"CC BY 3.0"},
+  {"id":"model-t","name":"Model T","subtitle":"THE ORIGINAL CLASSIC","model":"assets/cars/model-t.glb","preview":"assets/cars/model-t.webp","unlockRaces":8,"rotationY":0,"author":"Bruno Oliveira","source":"https://poly.pizza/m/aJVM4rmsGIb","license":"CC BY 3.0"},
+  {"id":"f40","name":"F40 Dream","subtitle":"THE SUPERCAR LEGEND","model":"assets/cars/f40.glb","preview":"assets/cars/f40.webp","unlockRaces":15,"rotationY":0,"author":"Alexander Schick","source":"https://poly.pizza/m/6-j7kD0viYB","license":"CC BY 3.0"}
+]

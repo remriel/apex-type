@@ -1,0 +1,9 @@
+node_modules/
+dist/
+client-dist/
+.sites/
+.wrangler/
+*.local
+*.tar.gz
+playtest/
+.sites-runtime/
