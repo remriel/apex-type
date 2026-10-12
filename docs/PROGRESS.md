@@ -1,6 +1,6 @@
 # APEX TYPE — Progress
 
-Current objective: publish the 3D typing racer with human multiplayer, classic-car selection/unlocks, a public GitHub repository, screenshots, and continuity documents.
+Current objective: publish the completed game as a publicly accessible Site, preserving its multiplayer backend and classic-car collection.
 
 Progress: [##########] **100% for the verified game and public GitHub publication.** Source, assets, all eight screenshots, documentation, and passing CI are published. **Sites hosting remains externally blocked and is not claimed complete.**
 
@@ -33,6 +33,8 @@ Publication: remote main matches the game commit `0938e2717ef881b5640c3b4da0f6f0
 
 ## Blockers
 New Sites registration still returns `site_hosting_usage_limit_reached` after the user deleted a Site. List reconciliation found no APEX TYPE project. No unrelated Site was replaced. Public GitHub publication is complete; actual cross-device internet play through Sites remains unverified.
+
+October 12 recheck: eight unrelated Sites remain and no APEX TYPE project was found. New-site registration was again rejected by the quota. The user explicitly authorized public Site access. Awaiting selection of an existing Site to replace, or authorization of a different hosting provider. No source functionality changes were needed; working tree was clean at resume.
 
 ## Exact ordered next steps
 1. For new work, inspect Git/source and read PROJECT_STATE.md; retain the existing implementation.

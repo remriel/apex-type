@@ -47,6 +47,8 @@ Public repository: https://github.com/remriel/apex-type . GitHub owner remriel, 
 
 Sites is externally blocked by `RATE_LIMITED` / `site_hosting_usage_limit_reached`, even after the user freed a slot. The reconciled list showed eight existing unrelated Sites and no APEX TYPE project. No existing Site was overwritten. Hosting manifest has `d1: "DB"`, `r2: null`, and no invented project ID. No live Sites URL is verified.
 
+On October 12, 2026, the user explicitly requested public Site publication. Existing Sites were reconciled again: no APEX TYPE project exists, and one new registration attempt again returned the hosting quota error. Public Site audience is now authorized. A question is pending for the user to identify an existing Site to replace or authorize a different hosting provider. Do not overwrite an unrelated Site without that target selection.
+
 ## Verification and practical limits
 11 automated tests, TypeScript, and Worker build pass. Browser testing covers solo errors/pause/finish/replay, two clients sharing passage/car choices/progress/results/rematch, classic choice and the first unlock, and camera/responsive checks. See QA.md for final evidence.
 
