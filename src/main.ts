@@ -3,6 +3,7 @@ import { Race, passages, racerInfo, type Difficulty } from './simulation/race';
 import { World, type CameraMode, type Atmosphere } from './render/world';
 import { Multiplayer, type Room } from './network';
 import { loadCars, cars, selectedCar, getCar, completedRaces, recordCompletion } from './garage';
+import { inject } from '@vercel/analytics';
 
 const icon = (name:string) => {
   const paths:Record<string,string>={settings:'<path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m9 3-1 3-3 1-2 5 2 5 3 1 1 3h6l1-3 3-1 2-5-2-5-3-1-1-3Z"/>',sound:'<path d="M4 9h4l5-4v14l-5-4H4Z"/><path d="M17 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',reset:'<path d="M4 10a8 8 0 1 1 2 8M4 4v6h6"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',pause:'<path d="M8 5v14M16 5v14"/>',flag:'<path d="M5 21V3m0 0h14l-2 5 2 5H5"/>',camera:'<rect x="3" y="6" width="18" height="14" rx="3"/><path d="m8 6 2-3h4l2 3"/><circle cx="12" cy="13" r="4"/>',close:'<path d="m6 6 12 12M6 18 18 6"/>'};
@@ -204,3 +205,6 @@ $('room-start').insertAdjacentHTML('beforebegin','<button class="lobby-garage" i
 $('lobby-garage').addEventListener('click',openGarage);
 $('garage-dialog').addEventListener('close',()=>{if(garagePaused)resumeRace();garagePaused=false;focusTyping();});
 loadCars().then(renderGarage).catch(e=>message(e.message));
+
+// Initialize Vercel Web Analytics
+inject();
