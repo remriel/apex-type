@@ -4,6 +4,8 @@
 
 ![Midnight circuit](docs/screenshots/midnight-circuit.png)
 
+**[Vercel deployment](https://apex-type-five.vercel.app/)** · [Gameplay](#play) · [Run locally](#run-locally) · [Screenshots](#screenshots)
+
 ## Play
 
 Choose a classic in **Garage**, then start a quick race or create a multiplayer room. Type the passage exactly as shown. Correct characters move your car around the course; mistakes block progress until corrected with Backspace. Finish the passage to complete a lap.
@@ -92,3 +94,8 @@ The project includes `.openai/hosting.json` with a `DB` D1 binding, Worker outpu
 ## License and credits
 
 Game source: [MIT](LICENSE). Third-party models and preview artwork retain their original licenses. Full creators, sources, license links, and modifications are in [Asset credits](docs/ASSETS.md) and the garage. Asphalt and the alpine environment were generated for this game.
+
+## More browser games
+
+- [Riftborne](https://github.com/remriel/riftborne): elemental magic and boss battles in a playable 3D browser alpha.
+- [Katamari Neighborhood](https://github.com/remriel/katamari-neighborhood): a mobile-first 3D rolling and object-collecting game.
