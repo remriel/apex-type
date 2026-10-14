@@ -1,41 +1,33 @@
 # APEX TYPE — Progress
 
-Current objective: publish v1.2.0 with a cinematic Auto camera and random paragraphs.
-
-Progress: [##########] **100% — verified v1.2.0, GitHub release and Vercel production.**
+Objective: fix Auto staying in Chase and publish v1.2.1.
+Progress: [##########] **100% — fix verified locally and on Vercel production.**
 
 ## Completed
-- [x] Reconcile instructions, docs, Git state and renderer/simulation source.
-- [x] Default Auto camera smoothly transitions Chase → Circuit → Chase → front tracking → Chase as lap progress advances.
-- [x] Keep manual Chase, Circuit and Top; reduced motion bypasses the director.
-- [x] Add portrait framing and eased orbital transitions that avoid passing through the car.
-- [x] Expand passages from 4 to 32, preserving existing multiplayer indices.
-- [x] Select randomly on page load and select a different random passage for each new solo race.
-- [x] Pass all 18 automated tests, TypeScript and production build.
-- [x] Complete browser lap, random replay, manual camera override and pause checks; inspect desktop and mobile views.
-- [x] Preserve original road materials and High quality bloom. Performance-mode QA images lacked bloom; final images use High quality.
-- [x] Push, verify CI/Vercel, publish v1.2.0 and export final documents.
+- [x] Read instructions, source, documents and Git state.
+- [x] Find silent reduced-motion bypass of Auto despite selected Auto UI.
+- [x] Default to visibly selected Chase when reduced motion is requested.
+- [x] Explicit Auto always enables the progress-driven director; ambient effects still respect reduced motion.
+- [x] Add regression test at the camera-mode policy layer; all 19 tests, TypeScript and production build pass.
+- [x] Emulate reduced motion in Chromium and verify initial Chase, then explicit Auto reaching Circuit at 25% and front tracking at 63%.
+- [x] Repeat those stages on the live Vercel site; inspect both screenshots with track glow intact.
+- [x] Push source, verify CI, publish v1.2.1 and export project documents.
 
-## Verification
-18 tests cover simulation, collection, multiplayer API, Chase, passage selection, and director continuity/visibility/clearance at 8,002 sampled desktop/portrait poses. Browser lap passed, replay changed the paragraph, manual Chase/Auto and pause passed. Different reloads showed different passages. Initial automation typed during countdown and lost leading characters; corrected the harness to wait for running. This was a test setup issue.
+## Implementation
+src/render/director.ts exports raceCameraPose, which selects the director from explicit mode and phase. The reduced-motion preference cannot silently override Auto. main.ts synchronizes initial World mode and all button pressed states with the reduced-motion default. Existing 32 random passages, manual camera choices and track glow remain intact.
 
-## Current implementation
-src/render/director.ts owns progress keyframes and quintic orbital interpolation in the local track frame. src/render/world.ts applies Auto unless reduced motion is enabled, and retains the existing finish framing. src/simulation/race.ts contains the append-only passage library and randomPassageIndex; src/main.ts chooses initial and subsequent solo text. Multiplayer continues using shared server-selected indices.
+## Verified publication
+Source: bcbb585c631e2d1e3c3db0593509fd005ab3a723.
+CI passed: https://github.com/remriel/apex-type/actions/runs/38628847760
+Vercel production: dpl_7XjxPrLtxx6fGkpahFZbeS4Uk4Vj, READY for this commit.
+Live https://apex-type-five.vercel.app/ returns HTTP 200 and index-CpXxmK16.js matches the local build.
+Release: https://github.com/remriel/apex-type/releases/tag/v1.2.1
 
-## Blockers
-None for the requested camera/text release. Existing hosted multiplayer backend limitations are unchanged.
-
-## Publication
-Source commit: e2e51707f1f07122031b700d05c222df965710c3.
-CI passed: https://github.com/remriel/apex-type/actions/runs/38622889920
-Release: https://github.com/remriel/apex-type/releases/tag/v1.2.0
-Live: https://apex-type-five.vercel.app/
-Vercel production dpl_7LD7WpJ8M43A5g7anaRkiL1hkowb is READY for the source commit; alias returns HTTP 200 and index-DGElaLiU.js matches the tested local build.
+## Known limitations
+Production multiplayer persistence is outside this camera hotfix. Local previews report a missing Vercel Analytics endpoint; production browser verification showed no such error.
 
 ## Exact next steps
-1. Requested camera and passage work is complete.
-2. On new work, inspect Git/source/tests and read both project documents.
-3. Preserve Auto as default, manual views, random solo text, shared multiplayer indices, and the original High quality track glow.
-
-## Active v1.2.1 hotfix
-Progress 80%: Auto/reduced-motion guard fixed; UI now defaults accurately to Chase under reduced motion and explicit Auto enables director. 19 tests/build pass. Browser emulated reduced-motion verification and Vercel publication in progress.
+1. No required work remains for this hotfix.
+2. On a new task, inspect Git/source/tests and both documents.
+3. Preserve explicit Auto intent under reduced motion; never restore the hidden reduced-motion bypass.
+4. Test mode-policy integration as well as pose math for future camera changes.
