@@ -58,3 +58,7 @@ Portable deliverable: `outputs/APEX-TYPE-playable.zip` in the parent task worksp
 
 ## RESUME HERE
 Read PROGRESS.md, inspect Git/source/tests, and continue from the existing game. Do not restart scaffolding. If Sites permits creation, register once, immediately persist the actual returned project ID with the Sites helper, retain credentials only in memory, build/package/push the exact commit with site-workflow, deploy the saved version, and verify success. Public GitHub authorization alone does not change Sites access policy; use the user's requested sharing audience.
+
+## October 13, 2026 — Dynamic Chase release
+Current authorized objective: implement a race-responsive chase camera and publish GitHub v1.1.0. Fresh clone is in work/apex-type. README now includes a Vercel URL absent from prior handoff; do not infer deployment/backend status from stale Sites notes. Chase is now the default in World and HUD. src/render/chase.ts computes bounded camera poses from actual visual velocity, upcoming tangent, rival proximity, aspect ratio, phase, and reduced-motion preference. Follow smoothing is exponential; finish uses a rear three-quarter shot. Explicit Circuit/Top choices remain respected. No new assets or subagents needed.
+RESUME HERE: verify production browser framing, finalize tests/build and portable archive, push and publish v1.1.0, record verified release URL.

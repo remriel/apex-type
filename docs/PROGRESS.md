@@ -1,6 +1,6 @@
 # APEX TYPE — Progress
 
-Current objective: publish the completed game as a publicly accessible Site, preserving its multiplayer backend and classic-car collection.
+Current objective: release v1.1.0 with dynamic Chase as the default camera. Prior Sites publication status below is historical.
 
 Progress: [##########] **100% for the verified game and public GitHub publication.** Source, assets, all eight screenshots, documentation, and passing CI are published. **Sites hosting remains externally blocked and is not claimed complete.**
 
@@ -42,3 +42,10 @@ October 12 recheck: eight unrelated Sites remain and no APEX TYPE project was fo
 3. When Sites quota permits, register one Site and persist its exact project ID immediately.
 4. Build/package/push the exact source state through the Sites helper, deploy the saved Worker with D1, and verify live deployment and two internet-connected clients.
 5. Update hosting status, README, and these documents with the verified URL. Do not claim a live Site before this succeeds.
+
+## Active update — October 13, 2026
+Objective: dynamic Chase camera and new GitHub release v1.1.0.
+Progress: [#########-] 90%.
+Completed: clean clone reconciliation, dynamic chase implementation, default HUD selection, version bump, four camera tests; 15 tests and initial production build passed.
+Completed additionally: full keyboard lap, portrait screenshot review, replay, camera controls and pause; final tests/build pass. Next: portable ZIP; commit/push; verify CI; publish release/assets; export both documents.
+Blockers: none for this release. Prior Sites quota is separate from current scope.

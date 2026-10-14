@@ -12,7 +12,7 @@ Choose a classic in **Garage**, then start a quick race or create a multiplayer 
 
 - **Quick race:** three AI opponents, Rookie/Sport/Pro difficulty, Esc to pause, and personal-best tracking.
 - **Multiplayer:** share a room link/code; the host starts a shared countdown. Everyone gets the same passage. Selected cars, progress, finish times, and rankings are shared through the server. Rematches open when the race ends.
-- **Cameras:** Circuit, Chase, and Top.
+- **Cameras:** Dynamic Chase is the default: speed-responsive distance and field of view, corner anticipation, wider framing beside rivals, and a finish shot. Circuit and Top remain selectable. Reduced-motion preferences disable cinematic effects.
 - **Atmospheres:** Midnight and Alpine sunrise.
 - **Garage:** three starter classics, with more unlocked from completed laps. Progress and preferences are saved on the current device.
 - **Settings:** optional engine/keystroke audio and performance graphics mode.
@@ -57,7 +57,7 @@ npm start
 
 ## Screenshots
 
-![Classic Chase camera](docs/screenshots/classic-chase.png)
+![Dynamic Chase camera](docs/screenshots/dynamic-chase-race.png)
 
 ![Alpine classics](docs/screenshots/alpine-classics.png)
 
@@ -89,7 +89,7 @@ The project includes `.openai/hosting.json` with a `DB` D1 binding, Worker outpu
 
 ## Verification
 
-11 automated tests cover correction, countdowns, pause, AI, ranking, unlocks, room capacity, host-only starts, prefix/sequence validation, recovery, rematches, and shared car choice. TypeScript and the production build pass. Browser playtests cover full laps, two independent human clients, shared progress/results/rematch, classic selection/unlocks, cameras, and responsive layouts. See [QA](docs/QA.md), [Project state](docs/PROJECT_STATE.md), and [Progress](docs/PROGRESS.md).
+15 automated tests cover correction, countdowns, pause, AI, ranking, unlocks, room capacity, host-only starts, prefix/sequence validation, recovery, rematches, and shared car choice. TypeScript and the production build pass. Browser playtests cover full laps, two independent human clients, shared progress/results/rematch, classic selection/unlocks, cameras, and responsive layouts. See [QA](docs/QA.md), [Project state](docs/PROJECT_STATE.md), and [Progress](docs/PROGRESS.md).
 
 ## License and credits
 

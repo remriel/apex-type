@@ -6,6 +6,8 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { racerInfo } from '../simulation/race';
 import { loadCars, getCar, selectedCar, cars as catalog } from '../garage';
+import { chasePose } from './chase';
+import type { Phase } from '../simulation/race';
 
 export type CameraMode = 'circuit' | 'chase' | 'top';
 export type Atmosphere = 'midnight' | 'alpine';
@@ -54,7 +56,7 @@ export class World {
   camera = new THREE.PerspectiveCamera(43, 1, 0.1, 1800);
   composer: EffectComposer;
   bloom: UnrealBloomPass;
-  mode: CameraMode = 'circuit';
+  mode: CameraMode = 'chase';
   atmosphere: Atmosphere = 'midnight';
   cars: THREE.Group[] = [];
   visualProgress = [0,0,0,0];
@@ -74,6 +76,8 @@ export class World {
   private target = new THREE.Vector3();
   private desiredCamera = new THREE.Vector3();
   private desiredTarget = new THREE.Vector3();
+  private chaseSpeed = 0;
+  private cameraInitialized = false;
   private observer: ResizeObserver;
   private width = 1;
   private height = 1;
@@ -197,10 +201,11 @@ export class World {
     this.camera.aspect=this.width/this.height;this.camera.updateProjectionMatrix();
     this.renderer.setSize(this.width,this.height);this.composer.setSize(this.width,this.height);
   }
-  reset(){this.visualProgress=[0,0,0,0];}
-  update(progress: number[], dt: number, speed:number, reducedMotion:boolean) {
+  reset(){this.visualProgress=[0,0,0,0];this.chaseSpeed=0;this.cameraInitialized=false;}
+  update(progress: number[], dt: number, speed:number, reducedMotion:boolean, phase: Phase = 'running') {
     if(this.lost)return;
     const ease=1-Math.exp(-dt*7);
+    const previousProgress=this.visualProgress[0];
     this.cars.forEach((car,i)=>{
       this.visualProgress[i]+= (progress[i]-this.visualProgress[i])*ease;
       const u=this.visualProgress[i]*0.994+0.004;
@@ -211,9 +216,16 @@ export class World {
     });
     const p=this.cars[0]?.position??trackPoint(0,-4.8);
     const t=curve.getTangentAt(this.visualProgress[0]*0.994+0.004);
+    const velocity=phase==='running'&&dt>0?Math.max(0,this.visualProgress[0]-previousProgress)*curve.getLength()/dt:0;
+    this.chaseSpeed+=(velocity-this.chaseSpeed)*(1-Math.exp(-dt*2.5));
+    let desiredFov=43;
     if(this.mode==='chase') {
-      this.desiredCamera.copy(p).addScaledVector(t,-20).add(new THREE.Vector3(0,13,0));
-      this.desiredTarget.copy(p).addScaledVector(t,24).add(new THREE.Vector3(0,1,0));
+      const u=this.visualProgress[0]*0.994+0.004;
+      const ahead=curve.getTangentAt((u+0.025)%1);
+      const battle=this.cars.slice(1,this.racerCount).reduce((closest,car,i)=>
+        progress[i+1]>=1?closest:Math.max(closest,1-THREE.MathUtils.clamp(car.position.distanceTo(p)/28,0,1)),0);
+      const pose=chasePose(p,t,ahead,this.chaseSpeed,battle,phase,this.camera.aspect,reducedMotion);
+      this.desiredCamera.copy(pose.camera);this.desiredTarget.copy(pose.target);desiredFov=pose.fov;
     } else if(this.mode==='top') {
       this.desiredCamera.set(0,440/Math.min(this.camera.aspect,1.7),25);this.desiredTarget.set(0,0,0);
     } else {
@@ -221,8 +233,9 @@ export class World {
       this.desiredCamera.set(114*factor,185*factor,205*factor);
       this.desiredTarget.set(0,-15,0);
     }
-    const cameraEase=reducedMotion?1:1-Math.exp(-dt*3);
+    const cameraEase=!this.cameraInitialized||reducedMotion?1:1-Math.exp(-dt*(this.mode==='chase'?6:3));
     this.camera.position.lerp(this.desiredCamera,cameraEase);this.target.lerp(this.desiredTarget,cameraEase);this.camera.lookAt(this.target);
+    this.camera.fov+=(desiredFov-this.camera.fov)*cameraEase;this.camera.updateProjectionMatrix();this.cameraInitialized=true;
     if(this.quality==='high')this.composer.render();else this.renderer.render(this.scene,this.camera);
     this.cars.forEach((car,i)=>{
       const screen=car.position.clone().add(new THREE.Vector3(0,4,0)).project(this.camera);

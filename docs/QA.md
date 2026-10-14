@@ -38,3 +38,10 @@ Screenshots are under docs/screenshots. Functional automation used graphics Perf
 
 ## Publication limits
 Actual hosted cross-device internet play has not been verified because Sites rejects new-site creation with site_hosting_usage_limit_reached. Multiplayer was verified through two independent browser contexts against the exact production Worker and its local SQLite adapter. The hosted D1 binding still needs deployment verification when the account permits registration.
+
+## v1.1.0 Dynamic Chase — October 13, 2026
+- All 15 automated tests pass; TypeScript and production Worker build pass. Camera tests cover speed/rival widening, mirrored corner anticipation, bounded extreme inputs, portrait player visibility, finish framing, and reduced-motion suppression.
+- Chromium production preview: Chase selected on boot; full passage typed via keyboard through 31%, 64%, and 100%; results show 52 WPM, 100% accuracy, 51.8 seconds. Captured and inspected dynamic-chase-corner/race/finish screenshots.
+- Replay and 390x844 portrait inspected: player and road remain visible above typing dock, no camera-control overlap. Circuit/Top/Chase selection and Esc pause exercised.
+- Existing Vercel Analytics script reports 404 on local preview; no gameplay exception observed. This local analytics endpoint is unrelated to the camera change.
+- Finish shot stays behind the existing blurred results overlay. No claim of changed live Vercel deployment or hosted multiplayer verification.
