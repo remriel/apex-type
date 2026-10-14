@@ -12,7 +12,7 @@ Choose a classic in **Garage**, then start a quick race or create a multiplayer 
 
 - **Quick race:** three AI opponents, Rookie/Sport/Pro difficulty, Esc to pause, and personal-best tracking.
 - **Multiplayer:** share a room link/code; the host starts a shared countdown. Everyone gets the same passage. Selected cars, progress, finish times, and rankings are shared through the server. Rematches open when the race ends.
-- **Cameras:** Auto is the default: the view smoothly weaves from Chase to a wide Circuit view, returns to Chase, tracks from ahead looking back, and settles behind you for the final stretch. Shot changes follow lap progress. Manual Chase, Circuit, and Top remain selectable; reduced motion defaults to Chase, while explicitly selecting Auto enables its shot changes.
+- **Cameras:** Auto is the default: the view smoothly weaves from Chase to a wide Circuit view, returns to Chase, tracks from ahead looking back, and settles behind you for the final stretch. Shot changes follow lap progress. Manual Chase, Circuit, and Top remain selectable; Auto remains the default with reduced motion enabled; ambient speed and corner effects respect that preference.
 - **Passages:** 32 original paragraphs. A random one is selected on page load, and each new solo race randomly picks a different one. Multiplayer rooms share their server-selected passage.
 - **Atmospheres:** Midnight and Alpine sunrise.
 - **Garage:** three starter classics, with more unlocked from completed laps. Progress and preferences are saved on the current device.

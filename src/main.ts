@@ -134,8 +134,8 @@ window.addEventListener('blur',()=>{if(!document.querySelector('dialog[open]'))s
 setQuote();renderUi();
 try {
   world=new World($('world'),[...document.querySelectorAll<HTMLElement>('.car-label')],message);
-  // Respect reduced motion initially, but an explicit Auto choice enables its director.
-  world.mode=reducedMotion?'chase':'auto';
+  // Auto is always the default; reduced motion only limits ambient effects.
+  world.mode='auto';
   document.querySelectorAll<HTMLButtonElement>('[data-camera]').forEach(button=>{
     const selected=button.dataset.camera===world!.mode;
     button.classList.toggle('selected',selected);button.setAttribute('aria-pressed',String(selected));

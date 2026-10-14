@@ -84,3 +84,6 @@ User reported Auto remained Chase throughout the lap. Found World silently bypas
 
 ## v1.2.1 publication / RESUME HERE
 Fix source bcbb585c631e2d1e3c3db0593509fd005ab3a723. CI passed https://github.com/remriel/apex-type/actions/runs/38628847760 . Production dpl_7XjxPrLtxx6fGkpahFZbeS4Uk4Vj READY; live alias returns HTTP 200 with index-CpXxmK16.js. Emulated reduced-motion live browser verified accurate initial Chase selection, then explicit Auto overview at 25% and front tracking at 63%; both screenshots inspected and glow preserved. Release https://github.com/remriel/apex-type/releases/tag/v1.2.1 . Fix is complete. The old instruction that reduced motion bypasses Auto is superseded: only the initial default is Chase; an explicit Auto selection always runs the director. Test integration policy, not just pose math, for future changes.
+
+## Auto default — user decision (October 14)
+User explicitly requires Auto as the default for everyone. main.ts now initializes Auto unconditionally, including reduced-motion environments; all button pressed states match it. This supersedes the v1.2.1 Chase initial default. Reduced motion still limits ambient speed/turn effects, while Auto follows the lap director. Manual choices remain available. No new assets or race changes. RESUME HERE: preserve unconditional Auto default and road glow.

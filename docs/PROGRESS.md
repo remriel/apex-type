@@ -1,12 +1,12 @@
 # APEX TYPE — Progress
 
-Objective: fix Auto staying in Chase and publish v1.2.1.
+Objective: make Auto the unconditional default, including with reduced motion enabled.
 Progress: [##########] **100% — fix verified locally and on Vercel production.**
 
 ## Completed
 - [x] Read instructions, source, documents and Git state.
 - [x] Find silent reduced-motion bypass of Auto despite selected Auto UI.
-- [x] Default to visibly selected Chase when reduced motion is requested.
+- [x] Auto initializes and is visibly selected for every user, including with reduced motion enabled.
 - [x] Explicit Auto always enables the progress-driven director; ambient effects still respect reduced motion.
 - [x] Add regression test at the camera-mode policy layer; all 19 tests, TypeScript and production build pass.
 - [x] Emulate reduced motion in Chromium and verify initial Chase, then explicit Auto reaching Circuit at 25% and front tracking at 63%.
@@ -31,3 +31,5 @@ Production multiplayer persistence is outside this camera hotfix. Local previews
 2. On a new task, inspect Git/source/tests and both documents.
 3. Preserve explicit Auto intent under reduced motion; never restore the hidden reduced-motion bypass.
 4. Test mode-policy integration as well as pose math for future camera changes.
+
+October 14 follow-up: user explicitly requested Auto as default for everyone. Removed the reduced-motion Chase default; publishing the small frontend update through the existing Vercel Git integration. All earlier reduced-motion Auto director regression tests remain applicable.
