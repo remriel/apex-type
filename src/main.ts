@@ -134,6 +134,12 @@ window.addEventListener('blur',()=>{if(!document.querySelector('dialog[open]'))s
 setQuote();renderUi();
 try {
   world=new World($('world'),[...document.querySelectorAll<HTMLElement>('.car-label')],message);
+  // Respect reduced motion initially, but an explicit Auto choice enables its director.
+  world.mode=reducedMotion?'chase':'auto';
+  document.querySelectorAll<HTMLButtonElement>('[data-camera]').forEach(button=>{
+    const selected=button.dataset.camera===world!.mode;
+    button.classList.toggle('selected',selected);button.setAttribute('aria-pressed',String(selected));
+  });
   if(read('apex-quality','high')==='low')world.setQuality('low');
   world.load().then(()=>{ready=true;if(multiplayer?.room){rosterKey='';roomChanged(multiplayer.room);}$<HTMLButtonElement>('start-button').disabled=false;const atmosphere=read('apex-atmosphere','midnight') as Atmosphere;if(atmosphere==='alpine'){$<HTMLSelectElement>('atmosphere').value=atmosphere;$('atmosphere').dispatchEvent(new Event('change'));}const quality=read('apex-quality','high') as 'high'|'low';if(quality==='low'){$<HTMLSelectElement>('quality').value=quality;world?.setQuality(quality);}renderUi();}).catch(error=>{console.error(error);$('load-status').textContent='Car assets could not load. Reload to try again.';});
 } catch(error){console.error(error);$('load-status').textContent='This browser needs WebGL2. Try Chrome or Edge with graphics acceleration enabled.';$('center-status').innerHTML='<div class="graphics-error"><b>Your circuit needs graphics acceleration.</b><p>Open this game in Chrome or Edge with WebGL2 enabled, then reload.</p></div>';}

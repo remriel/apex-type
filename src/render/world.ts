@@ -7,7 +7,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { racerInfo } from '../simulation/race';
 import { loadCars, getCar, selectedCar, cars as catalog } from '../garage';
 import { chasePose } from './chase';
-import { directedPose } from './director';
+import { raceCameraPose } from './director';
 import type { Phase } from '../simulation/race';
 
 export type CameraMode = 'auto' | 'circuit' | 'chase' | 'top';
@@ -226,8 +226,7 @@ export class World {
       const battle=this.cars.slice(1,this.racerCount).reduce((closest,car,i)=>
         progress[i+1]>=1?closest:Math.max(closest,1-THREE.MathUtils.clamp(car.position.distanceTo(p)/28,0,1)),0);
       const chase=chasePose(p,t,ahead,this.chaseSpeed,battle,phase,this.camera.aspect,reducedMotion);
-      const pose=this.mode==='auto'&&!reducedMotion&&phase!=='finished'
-        ?directedPose(chase,p,t,this.visualProgress[0],this.camera.aspect):chase;
+      const pose=raceCameraPose(this.mode,phase,chase,p,t,this.visualProgress[0],this.camera.aspect);
       this.desiredCamera.copy(pose.camera);this.desiredTarget.copy(pose.target);desiredFov=pose.fov;
     } else if(this.mode==='top') {
       this.desiredCamera.set(0,440/Math.min(this.camera.aspect,1.7),25);this.desiredTarget.set(0,0,0);

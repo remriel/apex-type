@@ -36,3 +36,6 @@ Vercel production dpl_7LD7WpJ8M43A5g7anaRkiL1hkowb is READY for the source commi
 1. Requested camera and passage work is complete.
 2. On new work, inspect Git/source/tests and read both project documents.
 3. Preserve Auto as default, manual views, random solo text, shared multiplayer indices, and the original High quality track glow.
+
+## Active v1.2.1 hotfix
+Progress 80%: Auto/reduced-motion guard fixed; UI now defaults accurately to Chase under reduced motion and explicit Auto enables director. 19 tests/build pass. Browser emulated reduced-motion verification and Vercel publication in progress.

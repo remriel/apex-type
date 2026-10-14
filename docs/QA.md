@@ -50,3 +50,6 @@ Vercel production v1.1.0 verification: exact camera commit deployed READY throug
 
 ## v1.2.0 — October 14, 2026
 All 18 tests, TypeScript and production build pass. Dense director sampling verifies continuity, camera clearance and player visibility on desktop/portrait. Browser lap, random replay, manual Chase/Auto and pause passed. Desktop Circuit/front and 390x844 front screenshots inspected. Final captures use High quality; no road material or bloom changes were made. Random loads showed different paragraphs. Camera shots follow distance progress rather than a timer.
+
+## v1.2.1 Auto reduced-motion regression
+19 tests and production build pass. Chromium emulated prefers-reduced-motion: reduce: initial Chase UI selection asserted; explicitly selecting Auto and advancing correct text to 25% produced the wide circuit shot, then 63% produced the front-facing shot. High-quality glow present in both inspected screenshots. This exercises the policy path missed in v1.2.0.

@@ -12,7 +12,7 @@ Choose a classic in **Garage**, then start a quick race or create a multiplayer 
 
 - **Quick race:** three AI opponents, Rookie/Sport/Pro difficulty, Esc to pause, and personal-best tracking.
 - **Multiplayer:** share a room link/code; the host starts a shared countdown. Everyone gets the same passage. Selected cars, progress, finish times, and rankings are shared through the server. Rematches open when the race ends.
-- **Cameras:** Auto is the default: the view smoothly weaves from Chase to a wide Circuit view, returns to Chase, tracks from ahead looking back, and settles behind you for the final stretch. Shot changes follow lap progress. Manual Chase, Circuit, and Top remain selectable; reduced motion keeps a steady Chase.
+- **Cameras:** Auto is the default: the view smoothly weaves from Chase to a wide Circuit view, returns to Chase, tracks from ahead looking back, and settles behind you for the final stretch. Shot changes follow lap progress. Manual Chase, Circuit, and Top remain selectable; reduced motion defaults to Chase, while explicitly selecting Auto enables its shot changes.
 - **Passages:** 32 original paragraphs. A random one is selected on page load, and each new solo race randomly picks a different one. Multiplayer rooms share their server-selected passage.
 - **Atmospheres:** Midnight and Alpine sunrise.
 - **Garage:** three starter classics, with more unlocked from completed laps. Progress and preferences are saved on the current device.
@@ -90,7 +90,7 @@ The project includes `.openai/hosting.json` with a `DB` D1 binding, Worker outpu
 
 ## Verification
 
-18 automated tests cover correction, countdowns, pause, AI, ranking, unlocks, room capacity, host-only starts, prefix/sequence validation, recovery, rematches, and shared car choice. TypeScript and the production build pass. Browser playtests cover full laps, two independent human clients, shared progress/results/rematch, classic selection/unlocks, cameras, and responsive layouts. See [QA](docs/QA.md), [Project state](docs/PROJECT_STATE.md), and [Progress](docs/PROGRESS.md).
+19 automated tests cover correction, countdowns, pause, AI, ranking, unlocks, room capacity, host-only starts, prefix/sequence validation, recovery, rematches, and shared car choice. TypeScript and the production build pass. Browser playtests cover full laps, two independent human clients, shared progress/results/rematch, classic selection/unlocks, cameras, and responsive layouts. See [QA](docs/QA.md), [Project state](docs/PROJECT_STATE.md), and [Progress](docs/PROGRESS.md).
 
 ## License and credits
 

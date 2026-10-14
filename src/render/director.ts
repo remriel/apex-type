@@ -1,6 +1,14 @@
 import * as THREE from 'three';
+import type { Phase } from '../simulation/race';
 
 type Pose = { camera: THREE.Vector3; target: THREE.Vector3; fov: number };
+
+/** Auto is an explicit camera choice, independent of ambient motion effects. */
+export function raceCameraPose(mode: 'auto' | 'chase', phase: Phase, chase: Pose,
+  position: THREE.Vector3, tangent: THREE.Vector3, progress: number, aspect: number) {
+  return mode==='auto'&&phase!=='finished'
+    ?directedPose(chase,position,tangent,progress,aspect):chase;
+}
 // Long chase holds, with slower bridges into overview and reverse tracking shots.
 const shots = [
   [0, 'chase'], [.12, 'chase'], [.23, 'circuit'], [.28, 'circuit'],

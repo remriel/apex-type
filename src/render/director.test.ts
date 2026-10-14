@@ -1,7 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import { directedPose } from './director.ts';
+import { directedPose, raceCameraPose } from './director.ts';
+
+test('explicit Auto directs reduced-motion Chase through circuit and front views', () => {
+  const p=new THREE.Vector3(0,1,0),t=new THREE.Vector3(0,0,1);
+  const steady=chasePose(p,t,t,12,0,'running',1.8,true);
+  assert.ok(raceCameraPose('auto','running',steady,p,t,.25,1.8).camera.y>180);
+  assert.ok(raceCameraPose('auto','running',steady,p,t,.63,1.8).camera.z>0);
+  assert.equal(raceCameraPose('chase','running',steady,p,t,.25,1.8),steady);
+  assert.equal(raceCameraPose('auto','finished',steady,p,t,1,1.8),steady);
+});
 import { chasePose } from './chase.ts';
 
 test('director visits chase, circuit and ahead-looking-back shots by lap progress', () => {
