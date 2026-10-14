@@ -1,13 +1,13 @@
 {
   "name": "apex-type",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build && node scripts/build-worker.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --experimental-strip-types --test src/simulation/race.test.ts src/garage.test.ts src/render/chase.test.ts server/api.test.mjs",
+    "test": "node --experimental-strip-types --test src/simulation/race.test.ts src/garage.test.ts src/render/chase.test.ts src/render/director.test.ts server/api.test.mjs",
     "start": "node scripts/serve-built.mjs"
   },
   "dependencies": {

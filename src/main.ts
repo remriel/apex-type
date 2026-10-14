@@ -1,5 +1,5 @@
 import './style.css';
-import { Race, passages, racerInfo, type Difficulty } from './simulation/race';
+import { Race, passages, racerInfo, type Difficulty, randomPassageIndex } from './simulation/race';
 import { World, type CameraMode, type Atmosphere } from './render/world';
 import { Multiplayer, type Room } from './network';
 import { loadCars, cars, selectedCar, getCar, completedRaces, recordCompletion } from './garage';
@@ -12,7 +12,7 @@ const icon = (name:string) => {
 const read=(key:string,fallback:string)=>{try{return localStorage.getItem(key)??fallback;}catch{return fallback;}};
 const save=(key:string,value:string)=>{try{localStorage.setItem(key,value);}catch{}};
 let difficulty:Difficulty=['rookie','sport','pro'].includes(read('apex-difficulty','sport'))?read('apex-difficulty','sport') as Difficulty:'sport';
-let passageIndex=0;
+let passageIndex=randomPassageIndex();
 let race=new Race(passages[passageIndex],difficulty);
 let best=Number(read('apex-best','0'))||0;
 let sound=read('apex-sound','false')==='true';
@@ -43,7 +43,7 @@ document.querySelector('#app')!.innerHTML=`
     <aside class="standings" aria-label="Race standings"><div class="standings-heading"><span>THE GRID</span><span class="ai-label">3 AI RACERS</span></div><div id="racers"></div><div class="session-detail"><span>ONE LAP</span><span id="timer">00:00.0</span></div></aside>
     <div id="car-labels">${racerInfo.map((r,i)=>`<div class="car-label ${i===0?'player-label':''}" style="--racer:${r.color}" data-racer="${i}"><span>${i===0?'YOU':r.name.toUpperCase()}</span></div>`).join('')}</div>
     <div class="map-panel"><canvas id="minimap" width="156" height="140" aria-label="Circuit minimap"></canvas><span id="map-percent">0% COMPLETE</span></div>
-    <div class="camera-controls"><span>${icon('camera')} VIEW</span><div role="group" aria-label="Camera view"><button data-camera="circuit" aria-pressed="false">Circuit</button><button class="selected" data-camera="chase" aria-pressed="true">Chase</button><button data-camera="top" aria-pressed="false">Top</button></div><button id="garage-button" class="garage-shortcut">GARAGE <span id="current-car-name"></span></button></div>
+    <div class="camera-controls"><span>${icon('camera')} VIEW</span><div role="group" aria-label="Camera view"><button class="selected" data-camera="auto" aria-pressed="true">Auto</button><button data-camera="circuit" aria-pressed="false">Circuit</button><button data-camera="chase" aria-pressed="false">Chase</button><button data-camera="top" aria-pressed="false">Top</button></div><button id="garage-button" class="garage-shortcut">GARAGE <span id="current-car-name"></span></button></div>
     <div class="center-status" id="center-status" aria-live="polite"></div>
     <section class="typing-dock" aria-label="Typing race">
       <div class="dock-heading"><div><span class="live-indicator"></span><span id="typing-label">YOUR KEYBOARD IS THE ACCELERATOR</span></div><div class="dock-actions"><label class="difficulty-label" for="difficulty">PACE</label><select id="difficulty" aria-label="Opponent difficulty"><option value="rookie">Rookie</option><option value="sport">Sport</option><option value="pro">Pro</option></select><button class="dock-icon" id="pause-button" title="Pause race (Esc)" aria-label="Pause race" disabled>${icon('pause')}</button><button class="dock-icon" id="restart-button" title="New race (Tab + Enter)" aria-label="New race">${icon('reset')}</button></div></div>
@@ -76,7 +76,7 @@ function formatTime(seconds:number){const minutes=Math.floor(seconds/60);return 
 function ordinal(n:number){return ['','st','nd','rd','th'][n];}
 function message(text:string){$('load-status').textContent=text;toastUntil=performance.now()+2400;}
 function focusTyping(){if(race.phase==='running')input.focus({preventScroll:true});}
-function newRace(){if(multiplayer?.credentials){showLobby();return;}hasNewBest=false;completionRecorded=false;unlockedThisRace=[];passageIndex=(passageIndex+1)%passages.length;race=new Race(passages[passageIndex],difficulty);input.value='';world?.reset();world?.setCar(0,selectedCar()).catch(e=>message(e.message));for(let i=1;i<4;i++)if(cars.length)world?.setCar(i,cars[i%3].id).catch(e=>message(e.message));previousPhase='';setQuote();renderUi();}
+function newRace(){if(multiplayer?.credentials){showLobby();return;}hasNewBest=false;completionRecorded=false;unlockedThisRace=[];passageIndex=randomPassageIndex(passageIndex);race=new Race(passages[passageIndex],difficulty);input.value='';world?.reset();world?.setCar(0,selectedCar()).catch(e=>message(e.message));for(let i=1;i<4;i++)if(cars.length)world?.setCar(i,cars[i%3].id).catch(e=>message(e.message));previousPhase='';setQuote();renderUi();}
 function startRace(){if(!ready)return;if(multiplayer?.credentials){showLobby();return;}initAudio();race.start();renderUi();}
 function setPaused(){if(multiplayer?.credentials){message('Multiplayer races keep running. Keep typing!');return;}race.pause();renderUi();}
 function resumeRace(){race.resume();renderUi();focusTyping();}

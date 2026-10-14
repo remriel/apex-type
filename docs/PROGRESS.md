@@ -1,39 +1,31 @@
 # APEX TYPE — Progress
 
-Current objective: implement dynamic Chase, publish GitHub v1.1.0, and update Vercel production.
+Current objective: publish v1.2.0 with a cinematic Auto camera and random paragraphs.
 
-Progress: [##########] **100% — verified camera change, published GitHub release, and Vercel production deployment.**
+Progress: [#########-] **90% — implementation, tests and browser QA complete; publication in progress.**
 
-## Checklist and completed work
-- [x] Read instructions, prior project documents, Git state and relevant renderer/simulation code.
-- [x] Make Chase the default in renderer and HUD.
-- [x] Add actual-motion speed zoom/distance, corner anticipation, nearby-rival framing, finish shot, portrait framing, and reduced-motion support.
-- [x] Preserve manual Circuit/Top selections and smooth follow transitions.
-- [x] Bump package and lockfile version to 1.1.0.
-- [x] Pass all 15 tests, TypeScript, production Worker build and whitespace checks.
-- [x] Browser-test a complete keyboard lap, replay, camera selection, Esc pause and 390x844 framing; inspect screenshots.
-- [x] Create playable ZIP; smoke-test built server HTTP 200 and multiplayer health.
-- [x] Push camera commit fbfd3fafce47960a967fc6b30c28d6065d39bc02; GitHub CI passed.
-- [x] Publish https://github.com/remriel/apex-type/releases/tag/v1.1.0 with uploaded playable ZIP.
-- [x] Verify Git-connected Vercel production deployment READY for the camera commit, correct alias, HTTP 200, matching build asset and live Chase default.
-- [x] Update project intelligence and export both documents to outputs.
+## Completed
+- [x] Reconcile instructions, docs, Git state and renderer/simulation source.
+- [x] Default Auto camera smoothly transitions Chase → Circuit → Chase → front tracking → Chase as lap progress advances.
+- [x] Keep manual Chase, Circuit and Top; reduced motion bypasses the director.
+- [x] Add portrait framing and eased orbital transitions that avoid passing through the car.
+- [x] Expand passages from 4 to 32, preserving existing multiplayer indices.
+- [x] Select randomly on page load and select a different random passage for each new solo race.
+- [x] Pass all 18 automated tests, TypeScript and production build.
+- [x] Complete browser lap, random replay, manual camera override and pause checks; inspect desktop and mobile views.
+- [x] Preserve original road materials and High quality bloom. Performance-mode QA images lacked bloom; final images use High quality.
+- [ ] Push, verify CI/Vercel, publish v1.2.0 and export final documents.
 
-## Current implementation state
-src/render/chase.ts computes bounded cinematic poses from actual visual velocity, upcoming track tangent, nearby active rivals, race phase and viewport aspect. World performs exponential smoothing, resets follow state between races, and passes phase from main.ts. Reduced motion suppresses zoom, corner swing, battle and finish effects. No assets, race rules or backend architecture changed.
+## Verification
+18 tests cover simulation, collection, multiplayer API, Chase, passage selection, and director continuity/visibility/clearance at 8,002 sampled desktop/portrait poses. Browser lap passed, replay changed the paragraph, manual Chase/Auto and pause passed. Different reloads showed different passages. Initial automation typed during countdown and lost leading characters; corrected the harness to wait for running. This was a test setup issue.
 
-## Verification and evidence
-15 tests pass (four camera tests added to the existing 11). Production build passes with the existing Three.js chunk-size advisory. Desktop full lap: 52 WPM, 100% accuracy, 51.8s. Screenshots in docs/screenshots/dynamic-chase-*.png cover corners, race, results and portrait view. Local analytics script returns 404 outside Vercel; no gameplay exception was observed.
+## Current implementation
+src/render/director.ts owns progress keyframes and quintic orbital interpolation in the local track frame. src/render/world.ts applies Auto unless reduced motion is enabled, and retains the existing finish framing. src/simulation/race.ts contains the append-only passage library and randomPassageIndex; src/main.ts chooses initial and subsequent solo text. Multiplayer continues using shared server-selected indices.
 
-CI: https://github.com/remriel/apex-type/actions/runs/38492552905
-Release: https://github.com/remriel/apex-type/releases/tag/v1.1.0
-Live game: https://apex-type-five.vercel.app/
-Vercel deployment: dpl_8kHWKbaDuGgJsto7XqYXmTyUbN2L, production READY, camera commit fbfd3fa.
+## Blockers
+None for the requested camera/text release. Existing hosted multiplayer backend limitations are unchanged.
 
-## Blockers and known limitations
-None for the camera release or Vercel frontend publication. Prior Sites registration quota remains historical. Internet multiplayer needs a shared backend; this release verifies local multiplayer health, not production room persistence.
-
-## Exact ordered next steps
-1. No remaining camera implementation or publication work.
-2. For a new request, read AGENTS.md and both documents, inspect Git state and relevant source/tests.
-3. Keep Chase as the default; make future camera changes in chase.ts and retain reduced-motion/portrait bounds.
-4. For hosted multiplayer work, inspect the actual Vercel backend configuration before selecting a data adapter; do not deploy the in-memory SQLite adapter as persistent storage.
+## Exact next steps
+1. Push completed source and screenshots; verify GitHub CI and Git-connected Vercel production.
+2. Publish GitHub v1.2.0 and playable package.
+3. Record verified URLs/status, export PROJECT_STATE.md and PROGRESS.md.

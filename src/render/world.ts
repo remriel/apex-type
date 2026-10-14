@@ -7,9 +7,10 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { racerInfo } from '../simulation/race';
 import { loadCars, getCar, selectedCar, cars as catalog } from '../garage';
 import { chasePose } from './chase';
+import { directedPose } from './director';
 import type { Phase } from '../simulation/race';
 
-export type CameraMode = 'circuit' | 'chase' | 'top';
+export type CameraMode = 'auto' | 'circuit' | 'chase' | 'top';
 export type Atmosphere = 'midnight' | 'alpine';
 const up = new THREE.Vector3(0, 1, 0);
 const curve = new THREE.CatmullRomCurve3([
@@ -56,7 +57,7 @@ export class World {
   camera = new THREE.PerspectiveCamera(43, 1, 0.1, 1800);
   composer: EffectComposer;
   bloom: UnrealBloomPass;
-  mode: CameraMode = 'chase';
+  mode: CameraMode = 'auto';
   atmosphere: Atmosphere = 'midnight';
   cars: THREE.Group[] = [];
   visualProgress = [0,0,0,0];
@@ -219,12 +220,14 @@ export class World {
     const velocity=phase==='running'&&dt>0?Math.max(0,this.visualProgress[0]-previousProgress)*curve.getLength()/dt:0;
     this.chaseSpeed+=(velocity-this.chaseSpeed)*(1-Math.exp(-dt*2.5));
     let desiredFov=43;
-    if(this.mode==='chase') {
+    if(this.mode==='chase'||this.mode==='auto') {
       const u=this.visualProgress[0]*0.994+0.004;
       const ahead=curve.getTangentAt((u+0.025)%1);
       const battle=this.cars.slice(1,this.racerCount).reduce((closest,car,i)=>
         progress[i+1]>=1?closest:Math.max(closest,1-THREE.MathUtils.clamp(car.position.distanceTo(p)/28,0,1)),0);
-      const pose=chasePose(p,t,ahead,this.chaseSpeed,battle,phase,this.camera.aspect,reducedMotion);
+      const chase=chasePose(p,t,ahead,this.chaseSpeed,battle,phase,this.camera.aspect,reducedMotion);
+      const pose=this.mode==='auto'&&!reducedMotion&&phase!=='finished'
+        ?directedPose(chase,p,t,this.visualProgress[0],this.camera.aspect):chase;
       this.desiredCamera.copy(pose.camera);this.desiredTarget.copy(pose.target);desiredFov=pose.fov;
     } else if(this.mode==='top') {
       this.desiredCamera.set(0,440/Math.min(this.camera.aspect,1.7),25);this.desiredTarget.set(0,0,0);
@@ -233,7 +236,7 @@ export class World {
       this.desiredCamera.set(114*factor,185*factor,205*factor);
       this.desiredTarget.set(0,-15,0);
     }
-    const cameraEase=!this.cameraInitialized||reducedMotion?1:1-Math.exp(-dt*(this.mode==='chase'?6:3));
+    const cameraEase=!this.cameraInitialized||reducedMotion?1:1-Math.exp(-dt*(this.mode==='chase'||this.mode==='auto'?6:3));
     this.camera.position.lerp(this.desiredCamera,cameraEase);this.target.lerp(this.desiredTarget,cameraEase);this.camera.lookAt(this.target);
     this.camera.fov+=(desiredFov-this.camera.fov)*cameraEase;this.camera.updateProjectionMatrix();this.cameraInitialized=true;
     if(this.quality==='high')this.composer.render();else this.renderer.render(this.scene,this.camera);

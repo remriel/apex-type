@@ -47,3 +47,6 @@ Actual hosted cross-device internet play has not been verified because Sites rej
 - Finish shot stays behind the existing blurred results overlay. No claim of changed live Vercel deployment or hosted multiplayer verification.
 
 Vercel production v1.1.0 verification: exact camera commit deployed READY through Git integration; apex-type-five.vercel.app returns HTTP 200 and serves the matching index-D8h5F-oh.js build. Live browser loads the classic models and shows Chase selected by default.
+
+## v1.2.0 — October 14, 2026
+All 18 tests, TypeScript and production build pass. Dense director sampling verifies continuity, camera clearance and player visibility on desktop/portrait. Browser lap, random replay, manual Chase/Auto and pause passed. Desktop Circuit/front and 390x844 front screenshots inspected. Final captures use High quality; no road material or bloom changes were made. Random loads showed different paragraphs. Camera shots follow distance progress rather than a timer.
