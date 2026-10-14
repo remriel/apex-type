@@ -45,3 +45,5 @@ Actual hosted cross-device internet play has not been verified because Sites rej
 - Replay and 390x844 portrait inspected: player and road remain visible above typing dock, no camera-control overlap. Circuit/Top/Chase selection and Esc pause exercised.
 - Existing Vercel Analytics script reports 404 on local preview; no gameplay exception observed. This local analytics endpoint is unrelated to the camera change.
 - Finish shot stays behind the existing blurred results overlay. No claim of changed live Vercel deployment or hosted multiplayer verification.
+
+Vercel production v1.1.0 verification: exact camera commit deployed READY through Git integration; apex-type-five.vercel.app returns HTTP 200 and serves the matching index-D8h5F-oh.js build. Live browser loads the classic models and shows Chase selected by default.

@@ -61,4 +61,11 @@ Read PROGRESS.md, inspect Git/source/tests, and continue from the existing game.
 
 ## October 13, 2026 — Dynamic Chase release
 Current authorized objective: implement a race-responsive chase camera and publish GitHub v1.1.0. Fresh clone is in work/apex-type. README now includes a Vercel URL absent from prior handoff; do not infer deployment/backend status from stale Sites notes. Chase is now the default in World and HUD. src/render/chase.ts computes bounded camera poses from actual visual velocity, upcoming tangent, rival proximity, aspect ratio, phase, and reduced-motion preference. Follow smoothing is exponential; finish uses a rear three-quarter shot. Explicit Circuit/Top choices remain respected. No new assets or subagents needed.
-RESUME HERE: verify production browser framing, finalize tests/build and portable archive, push and publish v1.1.0, record verified release URL.
+RESUME HERE: v1.1.0 camera work is complete. See the verified publication record below. Continue from the actual repository; retain dynamic Chase as the default and respect explicit Circuit/Top choices.
+
+## Verified v1.1.0 publication
+- Camera/source commit: fbfd3fafce47960a967fc6b30c28d6065d39bc02. GitHub CI passed: https://github.com/remriel/apex-type/actions/runs/38492552905 .
+- Published release: https://github.com/remriel/apex-type/releases/tag/v1.1.0 . Playable ZIP upload succeeded (previous upload failures are historical). Node 24+; no npm install needed. Built-package root returned HTTP 200 and multiplayer health returned ok:true.
+- User additionally authorized Vercel production publication. Existing apex-type project prj_2UZBc0vXjktHzndtbknqiFG7jIK6, team_sS8RTjB1ldRc5jnptpOKb2XP, is Git-connected. Push automatically deployed dpl_8kHWKbaDuGgJsto7XqYXmTyUbN2L for the exact camera commit. READY production with alias https://apex-type-five.vercel.app/; no duplicate project or redundant redeploy needed.
+- Production HTTP 200 serves index-D8h5F-oh.js, matching the verified local build. Browser loads classic models and shows Chase selected on boot. Sites quota history does not block Vercel frontend deployment. Hosted multiplayer backend remains outside this camera-release verification.
+

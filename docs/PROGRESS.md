@@ -1,51 +1,39 @@
 # APEX TYPE — Progress
 
-Current objective: release v1.1.0 with dynamic Chase as the default camera. Prior Sites publication status below is historical.
+Current objective: implement dynamic Chase, publish GitHub v1.1.0, and update Vercel production.
 
-Progress: [##########] **100% for the verified game and public GitHub publication.** Source, assets, all eight screenshots, documentation, and passing CI are published. **Sites hosting remains externally blocked and is not claimed complete.**
+Progress: [##########] **100% — verified camera change, published GitHub release, and Vercel production deployment.**
 
-## Checklist
-- [x] Inspect user instructions and video reference.
-- [x] Implement real 3D winding circuit and three cameras.
-- [x] Implement typing/correction, timer, WPM/accuracy, AI, pause, finish, and replay.
-- [x] Add four-person multiplayer rooms, shared starts/progress/results, invites, rematches, and car synchronization.
-- [x] Add three starter classics and unlocks after 3/8/15 completed laps.
-- [x] Make the roster extensible and document future car additions.
-- [x] Integrate licensed production models, generated environment/textures, and credits.
-- [x] Pass 11 tests, TypeScript, and final Worker build.
-- [x] Playtest two independent clients through a complete race and rematch.
-- [x] Verify selection, starter locks, and first unlock milestone.
-- [x] Create public GitHub repository `remriel/apex-type`.
-- [x] Recheck mobile overlap repair and capture final screenshots.
-- [x] Push source/assets/screenshots/docs and verify remote commit/public visibility.
-- [x] Prepare repository, local preview, portable package, and both documents for handoff.
-- [ ] Publish through Sites when quota permits; no live URL may be claimed before success.
+## Checklist and completed work
+- [x] Read instructions, prior project documents, Git state and relevant renderer/simulation code.
+- [x] Make Chase the default in renderer and HUD.
+- [x] Add actual-motion speed zoom/distance, corner anticipation, nearby-rival framing, finish shot, portrait framing, and reduced-motion support.
+- [x] Preserve manual Circuit/Top selections and smooth follow transitions.
+- [x] Bump package and lockfile version to 1.1.0.
+- [x] Pass all 15 tests, TypeScript, production Worker build and whitespace checks.
+- [x] Browser-test a complete keyboard lap, replay, camera selection, Esc pause and 390x844 framing; inspect screenshots.
+- [x] Create playable ZIP; smoke-test built server HTTP 200 and multiplayer health.
+- [x] Push camera commit fbfd3fafce47960a967fc6b30c28d6065d39bc02; GitHub CI passed.
+- [x] Publish https://github.com/remriel/apex-type/releases/tag/v1.1.0 with uploaded playable ZIP.
+- [x] Verify Git-connected Vercel production deployment READY for the camera commit, correct alias, HTTP 200, matching build asset and live Chase default.
+- [x] Update project intelligence and export both documents to outputs.
 
 ## Current implementation state
-Game, classic roster, garage, multiplayer Worker/API, migrations, extension guide, and screenshots are complete. Control/scene bounds follow actual dock height; sound preferences restore; performance mode applies before loading. Final production build passes. Full laps unlock cars; unfinished five-minute multiplayer races show timeout results and do not award completion or best-WPM records.
+src/render/chase.ts computes bounded cinematic poses from actual visual velocity, upcoming track tangent, nearby active rivals, race phase and viewport aspect. World performs exponential smoothing, resets follow state between races, and passes phase from main.ts. Reduced motion suppresses zoom, corner swing, battle and finish effects. No assets, race rules or backend architecture changed.
 
-## Verification performed
-All 11 tests pass: simulation, unlocks, capacity, host authorization, prefix/sequence validation, recovery, rematch gating, and shared car choice.
+## Verification and evidence
+15 tests pass (four camera tests added to the existing 11). Production build passes with the existing Three.js chunk-size advisory. Desktop full lap: 52 WPM, 100% accuracy, 51.8s. Screenshots in docs/screenshots/dynamic-chase-*.png cover corners, race, results and portrait view. Local analytics script returns 404 outside Vercel; no gameplay exception was observed.
 
-Browser: normal wrong keys block distance; Backspace recovers; pause freezes timer; full passage produces results; replay resets. Two contexts saw the same passage, selected different classics, shared 29%/20% progress, finished with matching server times/ranks, and returned to lobby on rematch. A seeded two-race profile finished its next lap and unlocked Charger at three races. Three starter cards were enabled, six cards total. Mobile repair passed at 390x844 and 360x640 with a real garage click and no horizontal overflow. Clipboard paste was prevented; graphics context loss paused and restored without page errors. Refresh recovered a running human race's 65 typed characters and selected cars. High graphics screenshots also passed.
+CI: https://github.com/remriel/apex-type/actions/runs/38492552905
+Release: https://github.com/remriel/apex-type/releases/tag/v1.1.0
+Live game: https://apex-type-five.vercel.app/
+Vercel deployment: dpl_8kHWKbaDuGgJsto7XqYXmTyUbN2L, production READY, camera commit fbfd3fa.
 
-Publication: remote main matches the game commit `0938e2717ef881b5640c3b4da0f6f0782337c903`; repository visibility verified Public. GitHub CI completed successfully: https://github.com/remriel/apex-type/actions/runs/38172915417 . Final documentation updates are committed separately after this verification.
-
-## Blockers
-New Sites registration still returns `site_hosting_usage_limit_reached` after the user deleted a Site. List reconciliation found no APEX TYPE project. No unrelated Site was replaced. Public GitHub publication is complete; actual cross-device internet play through Sites remains unverified.
-
-October 12 recheck: eight unrelated Sites remain and no APEX TYPE project was found. New-site registration was again rejected by the quota. The user explicitly authorized public Site access. Awaiting selection of an existing Site to replace, or authorization of a different hosting provider. No source functionality changes were needed; working tree was clean at resume.
+## Blockers and known limitations
+None for the camera release or Vercel frontend publication. Prior Sites registration quota remains historical. Internet multiplayer needs a shared backend; this release verifies local multiplayer health, not production room persistence.
 
 ## Exact ordered next steps
-1. For new work, inspect Git/source and read PROJECT_STATE.md; retain the existing implementation.
-2. To add a car, follow ADDING_CARS.md and extend public/cars.json without changing race rules.
-3. When Sites quota permits, register one Site and persist its exact project ID immediately.
-4. Build/package/push the exact source state through the Sites helper, deploy the saved Worker with D1, and verify live deployment and two internet-connected clients.
-5. Update hosting status, README, and these documents with the verified URL. Do not claim a live Site before this succeeds.
-
-## Active update — October 13, 2026
-Objective: dynamic Chase camera and new GitHub release v1.1.0.
-Progress: [#########-] 90%.
-Completed: clean clone reconciliation, dynamic chase implementation, default HUD selection, version bump, four camera tests; 15 tests and initial production build passed.
-Completed additionally: full keyboard lap, portrait screenshot review, replay, camera controls and pause; final tests/build pass. Next: portable ZIP; commit/push; verify CI; publish release/assets; export both documents.
-Blockers: none for this release. Prior Sites quota is separate from current scope.
+1. No remaining camera implementation or publication work.
+2. For a new request, read AGENTS.md and both documents, inspect Git state and relevant source/tests.
+3. Keep Chase as the default; make future camera changes in chase.ts and retain reduced-motion/portrait bounds.
+4. For hosted multiplayer work, inspect the actual Vercel backend configuration before selecting a data adapter; do not deploy the in-memory SQLite adapter as persistent storage.
