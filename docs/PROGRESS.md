@@ -2,7 +2,7 @@
 
 Current objective: publish v1.2.0 with a cinematic Auto camera and random paragraphs.
 
-Progress: [#########-] **90% — implementation, tests and browser QA complete; publication in progress.**
+Progress: [##########] **100% — verified v1.2.0, GitHub release and Vercel production.**
 
 ## Completed
 - [x] Reconcile instructions, docs, Git state and renderer/simulation source.
@@ -14,7 +14,7 @@ Progress: [#########-] **90% — implementation, tests and browser QA complete; 
 - [x] Pass all 18 automated tests, TypeScript and production build.
 - [x] Complete browser lap, random replay, manual camera override and pause checks; inspect desktop and mobile views.
 - [x] Preserve original road materials and High quality bloom. Performance-mode QA images lacked bloom; final images use High quality.
-- [ ] Push, verify CI/Vercel, publish v1.2.0 and export final documents.
+- [x] Push, verify CI/Vercel, publish v1.2.0 and export final documents.
 
 ## Verification
 18 tests cover simulation, collection, multiplayer API, Chase, passage selection, and director continuity/visibility/clearance at 8,002 sampled desktop/portrait poses. Browser lap passed, replay changed the paragraph, manual Chase/Auto and pause passed. Different reloads showed different passages. Initial automation typed during countdown and lost leading characters; corrected the harness to wait for running. This was a test setup issue.
@@ -25,7 +25,14 @@ src/render/director.ts owns progress keyframes and quintic orbital interpolation
 ## Blockers
 None for the requested camera/text release. Existing hosted multiplayer backend limitations are unchanged.
 
+## Publication
+Source commit: e2e51707f1f07122031b700d05c222df965710c3.
+CI passed: https://github.com/remriel/apex-type/actions/runs/38622889920
+Release: https://github.com/remriel/apex-type/releases/tag/v1.2.0
+Live: https://apex-type-five.vercel.app/
+Vercel production dpl_7LD7WpJ8M43A5g7anaRkiL1hkowb is READY for the source commit; alias returns HTTP 200 and index-DGElaLiU.js matches the tested local build.
+
 ## Exact next steps
-1. Push completed source and screenshots; verify GitHub CI and Git-connected Vercel production.
-2. Publish GitHub v1.2.0 and playable package.
-3. Record verified URLs/status, export PROJECT_STATE.md and PROGRESS.md.
+1. Requested camera and passage work is complete.
+2. On new work, inspect Git/source/tests and read both project documents.
+3. Preserve Auto as default, manual views, random solo text, shared multiplayer indices, and the original High quality track glow.
