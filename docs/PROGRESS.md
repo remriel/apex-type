@@ -32,4 +32,6 @@ Production multiplayer persistence is outside this camera hotfix. Local previews
 3. Preserve explicit Auto intent under reduced motion; never restore the hidden reduced-motion bypass.
 4. Test mode-policy integration as well as pose math for future camera changes.
 
-October 14 follow-up: user explicitly requested Auto as default for everyone. Removed the reduced-motion Chase default; publishing the small frontend update through the existing Vercel Git integration. All earlier reduced-motion Auto director regression tests remain applicable.
+October 14 follow-up: user explicitly requested Auto as default for everyone. Removed the reduced-motion Chase default; published through the existing Vercel Git integration. All earlier reduced-motion Auto director regression tests remain applicable.
+
+Default-Auto verification complete: a62e44e47ea289a368bd7f13f83a62c1e9d389d9 deployed READY as dpl_328mmRJjQbAcRM7o9joHr5xhrCDF. CI passed https://github.com/remriel/apex-type/actions/runs/38629325669 . Live page serves index-BuaQHeu9.js; Chromium emulating reduced motion asserted Auto aria-pressed=true on a fresh navigation without selecting a view. No remaining work.

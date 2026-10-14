@@ -87,3 +87,5 @@ Fix source bcbb585c631e2d1e3c3db0593509fd005ab3a723. CI passed https://github.co
 
 ## Auto default — user decision (October 14)
 User explicitly requires Auto as the default for everyone. main.ts now initializes Auto unconditionally, including reduced-motion environments; all button pressed states match it. This supersedes the v1.2.1 Chase initial default. Reduced motion still limits ambient speed/turn effects, while Auto follows the lap director. Manual choices remain available. No new assets or race changes. RESUME HERE: preserve unconditional Auto default and road glow.
+
+Unconditional Auto verified live: commit a62e44e, production dpl_328mmRJjQbAcRM7o9joHr5xhrCDF READY, index-BuaQHeu9.js; CI 38629325669 passed. Browser emulated reduced motion and asserted Auto selected on fresh navigation without interaction. This is the current accepted default for everyone.
