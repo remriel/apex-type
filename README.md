@@ -100,3 +100,5 @@ Game source: [MIT](LICENSE). Third-party models and preview artwork retain their
 
 - [Riftborne](https://github.com/remriel/riftborne): elemental magic and boss battles in a playable 3D browser alpha.
 - [Katamari Neighborhood](https://github.com/remriel/katamari-neighborhood): a mobile-first 3D rolling and object-collecting game.
+
+If you find this project useful, you can [buy me a coffee](https://buymeacoffee.com/remriel).
