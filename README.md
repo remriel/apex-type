@@ -101,6 +101,4 @@ Game source: [MIT](LICENSE). Third-party models and preview artwork retain their
 - [Riftborne](https://github.com/remriel/riftborne): elemental magic and boss battles in a playable 3D browser alpha.
 - [Katamari Neighborhood](https://github.com/remriel/katamari-neighborhood): a mobile-first 3D rolling and object-collecting game.
 
-[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/remriel)
-
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="remriel" data-color="#FFDD00" data-emoji="☕" data-font="Comic" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+<a href="https://buymeacoffee.com/remriel"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" width="110"></a>
